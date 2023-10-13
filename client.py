@@ -85,35 +85,27 @@ def receive_messages(socket):
         if message == "ZO":
             direction2_x = 0
             direction2_y = -1
-            print("message reçu : zo")
         elif message == "SO":
             direction2_x = 0
             direction2_y = 1
-            print("message recu : so")
         elif message == "LO":
             direction2_x = -1
             direction2_y = 0
-            print("message recu : qo")
         elif message == "DO":
             direction2_x = 1
             direction2_y = 0
-            print("message recu : do")
         elif message == "ZM":
             direction1_x = 0
             direction1_y = -1
-            print("message recu : zm")
         elif message == "SM":
             direction1_x = 0
             direction1_y = 1
-            print("message recu : sm")
         elif message == "LM":
             direction1_x = -1
             direction1_y = 0
-            print("message recu : lm")
         elif message == "DM":
             direction1_x = 1
             direction1_y = 0
-            print("message recu : dm")
 
 message_thread = threading.Thread(target=receive_messages, args=(client_socket,))
 message_thread.start()
@@ -127,8 +119,6 @@ while not game_started:
 
     if not message_queue.empty():
         message = message_queue.get()
-        print(message[0])
-        print(f"Serveur dit : {message[0]}")
 
         if message[0] == "G":
             game_started = True
@@ -249,7 +239,6 @@ while game_on:
     if touches[K_z] and not touche_z:
         # direction1_x = 0
         # direction1_y = -1
-        print("message envoyé : z")
         client_socket.send("HZ".encode('utf-8'))
         touche_z = True
 
@@ -260,7 +249,6 @@ while game_on:
         # direction1_x = 0
         # direction1_y = 1
         client_socket.send("HS".encode('utf-8'))
-        print("message envoyé : s")
         touche_s = True
 
     if not touches[K_s]:
@@ -270,7 +258,6 @@ while game_on:
         # direction1_x = -1
         # direction1_y = 0
         client_socket.send("HL".encode('utf-8'))
-        print("message envoyé : q")
         touche_q = True
 
     if not touches[K_q]:
@@ -280,7 +267,6 @@ while game_on:
         # direction1_x = 1
         # direction1_y = 0
         client_socket.send("HD".encode('utf-8'))
-        print("message envoyé : d")
         touche_d = True
 
     if not touches[K_d] :
